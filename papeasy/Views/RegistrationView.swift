@@ -8,9 +8,11 @@
 import Foundation
 import SwiftUI
 
-struct Signup: View {
-  @ObservedObject var auth: Authentication
-  @ObservedObject var account: Accounts
+struct RegistrationView: View {
+  @Binding var show: Bool
+  @Binding var showLogin: Bool
+  
+  @ObservedObject var account = StaticResource<UserCredentials, User?>(from: nil, path: "/accounts")
   @State private var email: String = ""
   @State private var first_name: String = ""
   @State private var last_name: String = ""
@@ -18,32 +20,21 @@ struct Signup: View {
   @State private var repassword: String = ""
   @State private var resp: String?
   @State private var isLoading = false
-  @State private var success = true
-  
-  @Binding var show: Bool
-  @Binding var showLogin: Bool
-  @Binding var isParentLoading: Bool
 
   private func onSignup() async {
     if password != repassword {
       resp = "Passwords do not match."
-      success = false
     } else {
       isLoading = true
       do {
-        try await account.signup(
-          email: email,
-          first_name: first_name,
-          last_name: last_name,
-          password: password
-        )
+        try await account.send(forItem: UserCredentials(first_name: first_name, last_name: last_name, email: email, locale: nil, password: password))
         resp = "Signup Successful! You can now log in."
         show = false
         showLogin = true
-      } catch HTTPError.Failure(let message) {
+      } catch ResourceError.Failure(let message) {
         resp = "\(message)"
       } catch {
-        resp = "\(error)"
+        print("\(error)")
       }
       isLoading = false
     }

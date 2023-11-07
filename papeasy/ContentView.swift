@@ -9,13 +9,9 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-  @StateObject var auth = Authentication()
-  @StateObject var account = Accounts()
-  @StateObject var samples = Samples()
+  @StateObject var auth = AuthResource()
   var body: some View {
-    NavigationStack {
-      Home(auth: auth, account: account, samples: samples)
-    }.padding()
+    BaseHomeView().environmentObject(auth)
   }
 }
 

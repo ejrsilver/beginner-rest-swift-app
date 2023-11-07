@@ -7,17 +7,6 @@
 
 import Foundation
 
-extension DateFormatter {
-  static let standard: DateFormatter = {
-    var formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    formatter.calendar = Calendar(identifier: .iso8601)
-    formatter.timeZone = TimeZone(secondsFromGMT: 0)
-    formatter.locale = Locale(identifier: "en_US_POSIX")
-    return formatter
-  }()
-}
-
 @MainActor
 class Samples: ObservableObject {
   @Published var samples: [Sample]?
@@ -33,7 +22,7 @@ class Samples: ObservableObject {
   }
   
   func list(auth: Auth) async throws -> Void {
-    guard let url = URL(string: "\(BaseURL)/samples") else {
+    guard let url = URL(string: "\(PapEasyBaseURL)/samples") else {
       throw HTTPError.URLError
     }
     var req = URLRequest(url: url)
@@ -55,7 +44,7 @@ class Samples: ObservableObject {
   }
   
   func get(id: Int, auth: Auth) async throws -> Void {
-    guard let url = URL(string: "\(BaseURL)/samples/\(id)") else {
+    guard let url = URL(string: "\(PapEasyBaseURL)/samples/\(id)") else {
       throw HTTPError.URLError
     }
     var req = URLRequest(url: url)
@@ -84,7 +73,7 @@ class Samples: ObservableObject {
     container_id: String = "",
     test_date: Date = Date()
   ) async throws -> Void {
-    guard var url = URL(string: "\(BaseURL)/samples") else {
+    guard var url = URL(string: "\(PapEasyBaseURL)/samples") else {
       throw HTTPError.URLError
     }
     
@@ -132,7 +121,7 @@ class Samples: ObservableObject {
     container_id: String = "",
     test_date: Date = Date()
   ) async throws -> Void {
-    guard var url = URL(string: "\(BaseURL)/samples/\(id)") else {
+    guard var url = URL(string: "\(PapEasyBaseURL)/samples/\(id)") else {
       throw HTTPError.URLError
     }
     

@@ -9,9 +9,10 @@ import Foundation
 import SwiftUI
 import Combine
 
-struct CreateSamplePopup: View {
-  @ObservedObject var auth: Authentication
-  @ObservedObject var samples: Samples
+struct CreateSampleView: View {
+  @EnvironmentObject var auth: AuthResource
+  @EnvironmentObject var samples: DynamicResource<[Sample]?>
+  @ObservedObject var sample = DynamicResource<Sample>(from: Sample(patient_name: "", test_date: Date()), path: "/samples")
   @State private var patient_name: String = ""
   @State private var device_id: String = ""
   @State private var vial_id: String = ""
@@ -21,28 +22,19 @@ struct CreateSamplePopup: View {
   @State var resp: String?
   
   @Binding var show: Bool
-  @Binding var isParentLoading: Bool
-  var onLoad: () async -> Void
   
   private func onSampleCreate() async {
-    guard let token = auth.auth else {
+    guard auth.auth != nil else {
       resp = "You are not logged in."
       return
     }
     isLoading = true
     do {
-      try await samples.new(
-        auth: token,
-        device_id: device_id,
-        patient_name: patient_name,
-        vial_id: vial_id,
-        container_id: container_id,
-        test_date: test_date
-      )
-      resp = "Sample Created!"
+      try await sample.send()
+      resp = nil
+      try await samples.retrieve()
       show = false
-      await onLoad()
-    } catch HTTPError.Failure(let message) {
+    } catch ResourceError.Failure(let message) {
       resp = "\(message)"
     } catch {
       resp = "\(error)"
@@ -60,11 +52,11 @@ struct CreateSamplePopup: View {
             Text("Create Sample")
               .font(.title)
               .fontWeight(.semibold)
-            TextField("Patient Name", text: $patient_name)
+            TextField("Patient Name", text: $sample.model.patient_name)
             TextField("Device ID *", text: $device_id).modifier(NumericField(field: $device_id))
             TextField("Vial ID", text: $vial_id).modifier(NumericField(field: $vial_id))
             TextField("Container ID", text: $container_id).modifier(NumericField(field: $container_id))
-            DatePicker("Test Date", selection: $test_date)
+            DatePicker("Test Date", selection: $sample.model.test_date)
             HStack {
               Button("Add Sample") {
                 Task {
@@ -87,40 +79,27 @@ struct CreateSamplePopup: View {
               .clipShape(.buttonBorder)
             }
           }.padding(.all, 30.0)
+            .task {
+              if let auth = auth.model, sample.auth == nil {
+                sample.setup(auth: auth)
+              }
+            }.refreshable {
+              if let auth = auth.model, sample.auth == nil  {
+                sample.setup(auth: auth)
+              }
+            }
         }
       }
     }
   }
 }
 
-struct NumericField: ViewModifier {
-  @Binding var field: String
-  func body(content: Content) -> some View {
-    content
-      .keyboardType(.numberPad)
-      .onReceive(Just(field)) { newValue in
-        let filtered = newValue.filter {
-          "0123456789".contains($0)
-        }
-        if filtered != newValue {
-          field = filtered
-        }
-      }
-  }
-}
-
 #Preview {
   @State var isCreateLoading = false
   @State var isLoading = false
-  @StateObject var auth = Authentication()
-  @StateObject var samples = Samples()
   
-  return CreateSamplePopup(
-    auth: auth,
-    samples: samples,
+  return CreateSampleView(
     resp: "Invalid parameter(s): device_id",
-    show: $isCreateLoading,
-    isParentLoading: $isLoading,
-    onLoad: SamplesScreen(auth: auth, samples: samples).loadSamples
-  )
+    show: $isCreateLoading
+  ).environmentObject(AuthResource())
 }
