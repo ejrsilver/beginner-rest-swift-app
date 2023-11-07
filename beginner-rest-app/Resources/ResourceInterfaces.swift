@@ -1,14 +1,13 @@
 //
 //  Request.swift
-//  papeasy
 //
 //  Created by Ethan Silver on 2023-11-04.
 //
 
 import Foundation
 
-let PapEasyBaseURL = "http://127.0.0.1/wp-json/pap-api/v1"
-let PapEasyKeychainKey = "papeasy-ios-key"
+let BaseURL = "http://127.0.0.1/wp-json/pap-api/v1"
+let KeychainKey = "beginner-app-ios-key"
 
 /// A type that can be retrieved with an identifier for updating.
 protocol RetrieveIdentifiable {
@@ -61,7 +60,7 @@ class StaticResource<S: Encodable, R: Decodable>: ObservableObject, Creatable {
   /// Send the encodable resource. Sets the decodable response.
   @MainActor
   func send(forItem: S) async throws {
-    let url = URL(string: "\(PapEasyBaseURL)\(path)")!
+    let url = URL(string: "\(BaseURL)\(path)")!
 
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
@@ -105,7 +104,7 @@ class DynamicResource<T: Codable>: StaticResource<T, T>, Retrievable {
   
   /// Retrieve an up-to-date instance.
   func retrieve(params: [URLQueryItem]? = nil) async throws {
-    var url = URL(string: "\(PapEasyBaseURL)\(path)")!
+    var url = URL(string: "\(BaseURL)\(path)")!
     
     if let params = params {
       url.append(queryItems: params)

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0585C9F42AF2CD1D00CFC450 /* papeasyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0585C9F32AF2CD1D00CFC450 /* papeasyApp.swift */; };
+		0585C9F42AF2CD1D00CFC450 /* app.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0585C9F32AF2CD1D00CFC450 /* app.swift */; };
 		0585C9F62AF2CD1D00CFC450 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0585C9F52AF2CD1D00CFC450 /* ContentView.swift */; };
 		0585C9FA2AF2CD2000CFC450 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0585C9F92AF2CD2000CFC450 /* Assets.xcassets */; };
 		0585C9FD2AF2CD2000CFC450 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0585C9FC2AF2CD2000CFC450 /* Preview Assets.xcassets */; };
@@ -26,8 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0585C9F02AF2CD1D00CFC450 /* papeasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = papeasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0585C9F32AF2CD1D00CFC450 /* papeasyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = papeasyApp.swift; sourceTree = "<group>"; };
+		0585C9F02AF2CD1D00CFC450 /* beginner-rest-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "beginner-rest-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0585C9F32AF2CD1D00CFC450 /* app.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app.swift; sourceTree = "<group>"; };
 		0585C9F52AF2CD1D00CFC450 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0585C9F92AF2CD2000CFC450 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0585C9FC2AF2CD2000CFC450 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 		0585C9E72AF2CD1D00CFC450 = {
 			isa = PBXGroup;
 			children = (
-				0585C9F22AF2CD1D00CFC450 /* papeasy */,
+				0585C9F22AF2CD1D00CFC450 /* beginner-rest-app */,
 				0585C9F12AF2CD1D00CFC450 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,25 +68,25 @@
 		0585C9F12AF2CD1D00CFC450 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0585C9F02AF2CD1D00CFC450 /* papeasy.app */,
+				0585C9F02AF2CD1D00CFC450 /* beginner-rest-app.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0585C9F22AF2CD1D00CFC450 /* papeasy */ = {
+		0585C9F22AF2CD1D00CFC450 /* beginner-rest-app */ = {
 			isa = PBXGroup;
 			children = (
 				0593C2182AF7FC1D00622E16 /* ModelViews */,
 				0585CA2A2AF6C74E00CFC450 /* Models */,
 				0585CA112AF478E800CFC450 /* Resources */,
 				0585CA0C2AF434A200CFC450 /* Views */,
-				0585C9F32AF2CD1D00CFC450 /* papeasyApp.swift */,
+				0585C9F32AF2CD1D00CFC450 /* app.swift */,
 				0585C9F52AF2CD1D00CFC450 /* ContentView.swift */,
 				0585C9F92AF2CD2000CFC450 /* Assets.xcassets */,
 				0585C9FE2AF2CD2000CFC450 /* Info.plist */,
 				0585C9FB2AF2CD2000CFC450 /* Preview Content */,
 			);
-			path = papeasy;
+			path = "beginner-rest-app";
 			sourceTree = "<group>";
 		};
 		0585C9FB2AF2CD2000CFC450 /* Preview Content */ = {
@@ -140,9 +140,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0585C9EF2AF2CD1D00CFC450 /* papeasy */ = {
+		0585C9EF2AF2CD1D00CFC450 /* beginner-rest-app */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0585CA012AF2CD2000CFC450 /* Build configuration list for PBXNativeTarget "papeasy" */;
+			buildConfigurationList = 0585CA012AF2CD2000CFC450 /* Build configuration list for PBXNativeTarget "beginner-rest-app" */;
 			buildPhases = (
 				0585C9EC2AF2CD1D00CFC450 /* Sources */,
 				0585C9ED2AF2CD1D00CFC450 /* Frameworks */,
@@ -152,9 +152,9 @@
 			);
 			dependencies = (
 			);
-			name = papeasy;
+			name = "beginner-rest-app";
 			productName = papeasy;
-			productReference = 0585C9F02AF2CD1D00CFC450 /* papeasy.app */;
+			productReference = 0585C9F02AF2CD1D00CFC450 /* beginner-rest-app.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -172,7 +172,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0585C9EB2AF2CD1D00CFC450 /* Build configuration list for PBXProject "papeasy" */;
+			buildConfigurationList = 0585C9EB2AF2CD1D00CFC450 /* Build configuration list for PBXProject "beginner-rest-app" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -185,7 +185,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0585C9EF2AF2CD1D00CFC450 /* papeasy */,
+				0585C9EF2AF2CD1D00CFC450 /* beginner-rest-app */,
 			);
 		};
 /* End PBXProject section */
@@ -219,7 +219,7 @@
 				0585CA2E2AF6C7BC00CFC450 /* Sample.swift in Sources */,
 				0585CA172AF479D600CFC450 /* AuthResource.swift in Sources */,
 				0585CA0B2AF3FAEF00CFC450 /* HomeView.swift in Sources */,
-				0585C9F42AF2CD1D00CFC450 /* papeasyApp.swift in Sources */,
+				0585C9F42AF2CD1D00CFC450 /* app.swift in Sources */,
 				0585CA0E2AF4353600CFC450 /* RegistrationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,7 +411,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0585C9EB2AF2CD1D00CFC450 /* Build configuration list for PBXProject "papeasy" */ = {
+		0585C9EB2AF2CD1D00CFC450 /* Build configuration list for PBXProject "beginner-rest-app" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0585C9FF2AF2CD2000CFC450 /* Debug */,
@@ -420,7 +420,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0585CA012AF2CD2000CFC450 /* Build configuration list for PBXNativeTarget "papeasy" */ = {
+		0585CA012AF2CD2000CFC450 /* Build configuration list for PBXNativeTarget "beginner-rest-app" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0585CA022AF2CD2000CFC450 /* Debug */,

@@ -1,6 +1,5 @@
 //
 //  Home.swift
-//  papeasy
 //
 //  Created by Ethan Silver on 2023-11-02.
 //
@@ -81,7 +80,7 @@ struct UnauthorizedHomeView: View {
   
   var body: some View {
     VStack {
-      Text("Login or sign up to start using the PapEasy platform.")
+      Text("Login or sign up to start using the application.")
         .multilineTextAlignment(.center)
       Spacer()
       HStack {
@@ -94,7 +93,7 @@ struct UnauthorizedHomeView: View {
         }.buttonStyle(.borderedProminent)
       }.padding()
     }
-    .navigationTitle("Welcome to PapEasy")
+    .navigationTitle("Welcome to the App")
   }
 }
 

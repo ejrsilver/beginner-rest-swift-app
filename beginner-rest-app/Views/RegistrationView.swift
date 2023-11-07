@@ -1,6 +1,5 @@
 //
 //  Signup.swift
-//  papeasy
 //
 //  Created by Ethan Silver on 2023-11-02.
 //

@@ -1,6 +1,5 @@
 //
 //  Auth.swift
-//  papeasy
 //
 //  Created by Ethan Silver on 2023-11-02.
 //
@@ -34,7 +33,7 @@ class AuthResource: StaticResource<Login, Auth?> {
   static func deleteTokenFromKeychain() -> Bool {
       let query = [
           kSecClass as String: kSecClassGenericPassword as String,
-          kSecAttrAccount as String: PapEasyKeychainKey,
+          kSecAttrAccount as String: KeychainKey,
       ] as CFDictionary
 
       let status = SecItemDelete(query)
@@ -44,7 +43,7 @@ class AuthResource: StaticResource<Login, Auth?> {
   static func saveTokenToKeychain(_ token: String) -> Bool {
       let query = [
           kSecClass as String: kSecClassGenericPassword as String,
-          kSecAttrAccount as String: PapEasyKeychainKey,
+          kSecAttrAccount as String: KeychainKey,
           kSecValueData as String: token.data(using: .utf8)!
       ] as CFDictionary
 
@@ -56,7 +55,7 @@ class AuthResource: StaticResource<Login, Auth?> {
   static func getTokenFromKeychain() -> Auth? {
       let query = [
           kSecClass as String: kSecClassGenericPassword as String,
-          kSecAttrAccount as String: PapEasyKeychainKey,
+          kSecAttrAccount as String: KeychainKey,
           kSecReturnData as String: kCFBooleanTrue!,
           kSecMatchLimit as String: kSecMatchLimitOne
       ] as CFDictionary
